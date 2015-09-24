@@ -23,29 +23,37 @@ Trema programming.
 [inch]: http://inch-ci.org/github/trema/hello_trema
 
 
-Prerequisites
--------------
+## 課題
 
-* Ruby 2.0.0 or higher ([RVM][rvm]).
-* [Open vSwitch][openvswitch] (`apt-get install openvswitch-switch`).
+HelloTrema (`./lib/hello_trema.rb`)  を改造して次の 2 つの機能を実装しよう。
 
-[rvm]: https://rvm.io/
-[openvswitch]: https://openvswitch.org/
+### その1
 
+スイッチを停止したら次のメッセージを表示するようにしてみよう:
 
-Install
--------
-
-```bash
-git clone https://github.com/trema/hello_trema.git
-cd hello_trema
-bundle install --binstubs
+```
+Bye 0xabc
 ```
 
+* ヒント: [スイッチの停止方法](https://relishapp.com/trema/trema/docs/handlers/switch-disconnected-handler)
 
-Play
-----
+### その2
 
-```bash
-./bin/trema run lib/hello_trema.rb -c trema.conf
+HelloTrema が起動したら次のメッセージを表示するようにしてみよう:
+
 ```
+HelloTrema started.
+```
+
+ただし、次の回答ではダメ (なぜダメか？も考えよう)
+
+```ruby
+class HelloTrema < Trema::Controller
+  def start(_args)
+    logger.info 'HelloTrema started.'
+  end
+  ...
+```
+
+* ヒント 1: [Object#class メソッド](http://ruby-doc.org/core-2.0.0/Object.html#method-i-class)
+* ヒント 2: [Module#name メソッド](http://ruby-doc.org/core-2.0.0/Module.html#method-i-name)
